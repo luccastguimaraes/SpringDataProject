@@ -26,7 +26,6 @@ public class Funcionario {
   }
 
   public Funcionario(String nome, String cpf, Double salario) {
-    this.cargo = cargo;
     this.dados = new DadosPessoais(nome, cpf, salario);
   }
 

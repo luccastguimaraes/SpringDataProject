@@ -1,9 +1,6 @@
 package br.com.eu.spring;
 
-import br.com.eu.spring.service.CrudCargoService;
-import br.com.eu.spring.service.CrudFuncionarioService;
-import br.com.eu.spring.service.CrudUnidadeTrabalhoService;
-import br.com.eu.spring.service.RelatoriosService;
+import br.com.eu.spring.service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,12 +17,14 @@ public class Application implements CommandLineRunner {
    private final CrudFuncionarioService funcionarioService;
    private final CrudUnidadeTrabalhoService unidadeTrabalhoService;
    private final RelatoriosService relatoriosService;
+   private final RelatorioFuncionarioDinamico relatorioFuncionarioDinamico;
 
-   public Application(CrudCargoService cargoService, CrudFuncionarioService funcionarioService, CrudUnidadeTrabalhoService unidadeTrabalhoService, RelatoriosService relatoriosService) {
+   public Application(CrudCargoService cargoService, CrudFuncionarioService funcionarioService, CrudUnidadeTrabalhoService unidadeTrabalhoService, RelatoriosService relatoriosService, RelatorioFuncionarioDinamico relatorioFuncionarioDinamico) {
       this.cargoService = cargoService;
       this.funcionarioService = funcionarioService;
       this.unidadeTrabalhoService = unidadeTrabalhoService;
       this.relatoriosService = relatoriosService;
+      this.relatorioFuncionarioDinamico = relatorioFuncionarioDinamico;
    }
 
    public static void main(String[] args) {
@@ -44,7 +43,7 @@ public class Application implements CommandLineRunner {
             case 2 -> funcionarioService.start();
             case 3 -> unidadeTrabalhoService.start();
             case 4 -> relatoriosService.start();
-            case 5 -> cargoService.start();
+            case 5 -> relatorioFuncionarioDinamico.start();
             case 6 -> {
                sc.close();
                System.out.println("Finalizando");
