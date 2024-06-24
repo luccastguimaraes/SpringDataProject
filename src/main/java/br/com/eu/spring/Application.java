@@ -3,12 +3,15 @@ package br.com.eu.spring;
 import br.com.eu.spring.service.CrudCargoService;
 import br.com.eu.spring.service.CrudFuncionarioService;
 import br.com.eu.spring.service.CrudUnidadeTrabalhoService;
+import br.com.eu.spring.service.RelatoriosService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.util.Scanner;
 
+@EnableJpaRepositories
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
@@ -16,11 +19,13 @@ public class Application implements CommandLineRunner {
 	private final CrudCargoService cargoService;
 	private final CrudFuncionarioService funcionarioService;
 	private final CrudUnidadeTrabalhoService unidadeTrabalhoService;
+	private final RelatoriosService relatoriosService;
 
-	public Application(CrudCargoService cargoService, CrudFuncionarioService funcionarioService, CrudUnidadeTrabalhoService unidadeTrabalhoService) {
+	public Application(CrudCargoService cargoService, CrudFuncionarioService funcionarioService, CrudUnidadeTrabalhoService unidadeTrabalhoService, RelatoriosService relatoriosService) {
 		this.cargoService = cargoService;
      this.funcionarioService = funcionarioService;
      this.unidadeTrabalhoService = unidadeTrabalhoService;
+     this.relatoriosService = relatoriosService;
   }
 
 	public static void main(String[] args) {
@@ -37,7 +42,7 @@ public class Application implements CommandLineRunner {
 				case 1 -> cargoService.start();
 				case 2 -> funcionarioService.start();
 				case 3 -> unidadeTrabalhoService.start();
-				case 4 -> cargoService.start();
+				case 4 -> relatoriosService.start();
 				case 5 -> cargoService.start();
 				case 6 -> {
 					System.out.println("Finalizando");
