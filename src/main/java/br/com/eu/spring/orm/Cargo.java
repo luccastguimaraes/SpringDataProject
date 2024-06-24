@@ -13,7 +13,7 @@ public class Cargo {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
   private String nome;
-  @OneToMany(mappedBy = "cargo", cascade = CascadeType.ALL, orphanRemoval = true)
+  @OneToMany(mappedBy = "cargo")
   private List<Funcionario> funcionarioList;
 
   public Cargo() {

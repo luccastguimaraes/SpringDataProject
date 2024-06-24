@@ -47,4 +47,13 @@ public class DadosPessoais implements Serializable {
   public void setSalario(Double salario) {
     this.salario = salario;
   }
+
+  @Override
+  public String toString() {
+    return "DadosPessoais{" +
+          "nome='" + nome + '\'' +
+          ", cpf='" + cpf + '\'' +
+          ", salario=" + salario +
+          '}';
+  }
 }

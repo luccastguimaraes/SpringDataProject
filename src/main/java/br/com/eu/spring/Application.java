@@ -1,6 +1,8 @@
 package br.com.eu.spring;
 
 import br.com.eu.spring.service.CrudCargoService;
+import br.com.eu.spring.service.CrudFuncionarioService;
+import br.com.eu.spring.service.CrudUnidadeTrabalhoService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,10 +14,14 @@ public class Application implements CommandLineRunner {
 
 	private Boolean system = true;
 	private final CrudCargoService cargoService;
+	private final CrudFuncionarioService funcionarioService;
+	private final CrudUnidadeTrabalhoService unidadeTrabalhoService;
 
-	public Application(CrudCargoService cargoService) {
+	public Application(CrudCargoService cargoService, CrudFuncionarioService funcionarioService, CrudUnidadeTrabalhoService unidadeTrabalhoService) {
 		this.cargoService = cargoService;
-	}
+     this.funcionarioService = funcionarioService;
+     this.unidadeTrabalhoService = unidadeTrabalhoService;
+  }
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -26,10 +32,11 @@ public class Application implements CommandLineRunner {
 		Scanner sc = new Scanner(System.in);
 		while (system) {
 			Integer function = menu(sc);
+			sc.nextLine();
 			switch (function) {
 				case 1 -> cargoService.start();
-				case 2 -> cargoService.start();
-				case 3 -> cargoService.start();
+				case 2 -> funcionarioService.start();
+				case 3 -> unidadeTrabalhoService.start();
 				case 4 -> cargoService.start();
 				case 5 -> cargoService.start();
 				case 6 -> {

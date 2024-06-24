@@ -29,6 +29,7 @@ public class CrudUnidadeTrabalhoService {
       System.out.println("5 - Sair");
 
       int action = sc.nextInt();
+      sc.nextLine();
       switch (action) {
         case 1 -> salvar(sc);
         case 2 -> atualizar(sc);
@@ -37,7 +38,6 @@ public class CrudUnidadeTrabalhoService {
         case 5 -> {
           sc.close();
           system = false;
-          System.exit(0);
         }
         default -> System.out.println("Opcão invalida. Por favor escolha uma opção valida.");
       }
@@ -48,9 +48,9 @@ public class CrudUnidadeTrabalhoService {
 
   private void salvar(Scanner sc){
     System.out.println("Digite o nome da unidade que deseja salvar: ");
-    String nome = sc.next();
-    System.out.println("Digite o nome da unidade que deseja salvar: ");
-    String endereco = sc.next();
+    String nome = sc.nextLine();
+    System.out.println("Digite o endereco da unidade que deseja salvar: ");
+    String endereco = sc.nextLine();
     repository.save(new UnidadeTrabalho(nome, endereco));
     System.out.println("Salvo");
   }
@@ -58,10 +58,11 @@ public class CrudUnidadeTrabalhoService {
   private void atualizar(Scanner sc){
     System.out.println("Digite o Id da unidade que deseja atualizar: ");
     int id = sc.nextInt();
+    sc.nextLine();
     System.out.println("Digite o novo nome da unidade: ");
-    String nome = sc.next();
+    String nome = sc.nextLine();
     System.out.println("Digite o novo endereco da unidade: ");
-    String endereco = sc.next();
+    String endereco = sc.nextLine();
 
     UnidadeTrabalho u = new UnidadeTrabalho(nome, endereco);
     u.setId(id);
@@ -77,6 +78,7 @@ public class CrudUnidadeTrabalhoService {
   private void deletar(Scanner sc) {
     System.out.println("Digite o Id da unidade que deseja deletar: ");
     int id = sc.nextInt();
+    sc.nextLine();
     repository.deleteById(id);
     System.out.println("Deletado");
   }

@@ -27,6 +27,7 @@ public class CrudCargoService {
       System.out.println("5 - Sair");
 
       int action = sc.nextInt();
+      sc.nextLine();
       switch (action) {
         case 1 -> salvar(sc);
         case 2 -> atualizar(sc);
@@ -35,7 +36,6 @@ public class CrudCargoService {
         case 5 -> {
           sc.close();
           system = false;
-          System.exit(0);
         }
         default -> System.out.println("Opcão invalida. Por favor escolha uma opção valida.");
       }
@@ -46,7 +46,7 @@ public class CrudCargoService {
 
   private void salvar(Scanner sc){
     System.out.println("Digite o cargo que deseja salvar: ");
-    String nome = sc.next();
+    String nome = sc.nextLine();
     repository.save(new Cargo(nome));
     System.out.println("Salvo");
   }
@@ -54,8 +54,9 @@ public class CrudCargoService {
   private void atualizar(Scanner sc){
     System.out.println("Id");
     int id = sc.nextInt();
+    sc.nextLine();
     System.out.println("Nome do Cargo");
-    String nome = sc.next();
+    String nome = sc.nextLine();
 
     Cargo cargo = new Cargo(nome);
     cargo.setId(id);
@@ -71,6 +72,7 @@ public class CrudCargoService {
   private void deletar(Scanner sc) {
     System.out.println("Id");
     int id = sc.nextInt();
+    sc.nextLine();
     repository.deleteById(id);
     System.out.println("Deletado");
   }
