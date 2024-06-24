@@ -2,7 +2,6 @@ package br.com.eu.spring.orm;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -42,8 +41,8 @@ public class Cargo {
   @Override
   public String toString() {
     return "Cargo{" +
-      "id=" + id +
-      ", nome='" + nome + '\'' +
-      '}';
+          "id=" + id +
+          ", nome='" + nome + '\'' +
+          '}';
   }
 }

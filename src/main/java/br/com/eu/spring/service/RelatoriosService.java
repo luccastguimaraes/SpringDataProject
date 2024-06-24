@@ -1,6 +1,7 @@
 package br.com.eu.spring.service;
 
 import br.com.eu.spring.orm.Funcionario;
+import br.com.eu.spring.orm.FuncionarioProjection;
 import br.com.eu.spring.repository.FuncionarioRepository;
 import org.springframework.stereotype.Service;
 
@@ -20,23 +21,22 @@ public class RelatoriosService {
    public void start() {
       Scanner sc = new Scanner(System.in);
       while (system) {
-         System.out.println("Qual acao de cargo deseja executar");
+         System.out.println("Qual relatorio deseja executar");
          System.out.println("0 - Sair");
-         System.out.println("1 - Busca funcionario pelo CPF");
+         System.out.println("1 - Buscar funcionario pelo CPF");
+         System.out.println("2 - Relatorio dos Salarios dos Funcionarios");
 
-         int action = sc.nextInt();
+         Integer action = sc.nextInt();
          sc.nextLine();
 
          switch (action) {
             case 1 -> buscaFuncionarioCpf(sc);
-            case 2 -> buscaFuncionarioCpf(sc);
+            case 2 -> relatorioSalarioFuncionario();
             default -> {
                sc.close();
-               system = false;
                System.exit(0);
             }
          }
-
       }
    }
 
@@ -45,5 +45,12 @@ public class RelatoriosService {
       String cpf = sc.nextLine();
       List<Funcionario> list = funcionarioRepository.findByDadosCpf(cpf);
       list.forEach(System.out::println);
+   }
+
+   private void relatorioSalarioFuncionario() {
+      List<FuncionarioProjection> list = funcionarioRepository.findFuncionarioSalario();
+      list.forEach(f -> System.out.println("Funcionario: id: " + f.getId()
+            + "  nome: " + f.getNome() + "  salario: " + f.getSalario()
+            + "  Cargo: " + f.getCargo()));
    }
 }

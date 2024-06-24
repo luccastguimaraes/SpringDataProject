@@ -4,7 +4,6 @@ import jakarta.persistence.Embeddable;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 @Embeddable
 public class DadosPessoais implements Serializable {

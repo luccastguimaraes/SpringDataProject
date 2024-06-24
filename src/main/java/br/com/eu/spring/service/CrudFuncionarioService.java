@@ -39,7 +39,7 @@ public class CrudFuncionarioService {
          System.out.println("4 - Deletar");
          System.out.println("5 - Sair");
 
-         int action = sc.nextInt();
+         Integer action = sc.nextInt();
          sc.nextLine();
          switch (action) {
             case 1 -> salvar(sc);
@@ -48,12 +48,10 @@ public class CrudFuncionarioService {
             case 4 -> deletar(sc);
             case 5 -> {
                sc.close();
-               system = false;
+               System.exit(0);
             }
             default -> System.out.println("Opcão invalida. Por favor escolha uma opção valida.");
          }
-
-
       }
    }
 
@@ -67,12 +65,8 @@ public class CrudFuncionarioService {
       sc.nextLine();
       System.out.println("Digite a data de contracao: ");
       String dataContratacao = sc.nextLine();
-      System.out.println("Digite o Id do cargo:");
-      Integer cargoId = sc.nextInt();
-      sc.nextLine();
-      System.out.println("Digite o Id da unidade de trabalho:");
-      Integer unidadeId = sc.nextInt();
-      sc.nextLine();
+      Integer cargoId = buscarCargoId(sc);
+      Integer unidadeId = buscarUnidadeId(sc);
       if (cargoRepository.existsById(cargoId) && unidadeTrabalhoRepository.existsById(unidadeId)) {
          Optional<Cargo> cargo = cargoRepository.findById(cargoId);
          Optional<UnidadeTrabalho> unidade = unidadeTrabalhoRepository.findById(unidadeId);
@@ -172,8 +166,8 @@ public class CrudFuncionarioService {
    }
 
    private void visualizar() {
-       Iterable<Funcionario> u = repository.findAll();
-       u.forEach(System.out::println);
+      Iterable<Funcionario> u = repository.findAll();
+      u.forEach(System.out::println);
    }
 
    private void deletar(Scanner sc) {
@@ -182,6 +176,24 @@ public class CrudFuncionarioService {
       sc.nextLine();
       repository.deleteById(id);
       System.out.println("Deletado");
+   }
+
+   private Integer buscarCargoId(Scanner sc) {
+      Iterable<Cargo> cargos = cargoRepository.findAll();
+      cargos.forEach(cargo -> System.out.println("Id_Cargo: " + cargo.getId() + "_" + cargo.getNome()));
+      System.out.println("Digite o Id do cargo:");
+      Integer id = sc.nextInt();
+      sc.nextLine();
+      return id;
+   }
+
+   private Integer buscarUnidadeId(Scanner sc) {
+      Iterable<UnidadeTrabalho> unidadeTrabalhos = unidadeTrabalhoRepository.findAll();
+      unidadeTrabalhos.forEach(unidadeTrabalho -> System.out.println("Id_Unidade: " + unidadeTrabalho.getId() + "_" + unidadeTrabalho.getNome()));
+      System.out.println("Digite o Id da Unidade:");
+      Integer id = sc.nextInt();
+      sc.nextLine();
+      return id;
    }
 
 

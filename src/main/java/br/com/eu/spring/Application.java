@@ -15,56 +15,53 @@ import java.util.Scanner;
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
-	private Boolean system = true;
-	private final CrudCargoService cargoService;
-	private final CrudFuncionarioService funcionarioService;
-	private final CrudUnidadeTrabalhoService unidadeTrabalhoService;
-	private final RelatoriosService relatoriosService;
+   private Boolean system = true;
+   private final CrudCargoService cargoService;
+   private final CrudFuncionarioService funcionarioService;
+   private final CrudUnidadeTrabalhoService unidadeTrabalhoService;
+   private final RelatoriosService relatoriosService;
 
-	public Application(CrudCargoService cargoService, CrudFuncionarioService funcionarioService, CrudUnidadeTrabalhoService unidadeTrabalhoService, RelatoriosService relatoriosService) {
-		this.cargoService = cargoService;
-     this.funcionarioService = funcionarioService;
-     this.unidadeTrabalhoService = unidadeTrabalhoService;
-     this.relatoriosService = relatoriosService;
-  }
+   public Application(CrudCargoService cargoService, CrudFuncionarioService funcionarioService, CrudUnidadeTrabalhoService unidadeTrabalhoService, RelatoriosService relatoriosService) {
+      this.cargoService = cargoService;
+      this.funcionarioService = funcionarioService;
+      this.unidadeTrabalhoService = unidadeTrabalhoService;
+      this.relatoriosService = relatoriosService;
+   }
 
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
-	}
+   public static void main(String[] args) {
+      SpringApplication.run(Application.class, args);
+   }
 
-	@Override
-	public void run(String... args) throws Exception {
-		Scanner sc = new Scanner(System.in);
-		while (system) {
-			Integer function = menu(sc);
-			sc.nextLine();
-			switch (function) {
-				case 1 -> cargoService.start();
-				case 2 -> funcionarioService.start();
-				case 3 -> unidadeTrabalhoService.start();
-				case 4 -> relatoriosService.start();
-				case 5 -> cargoService.start();
-				case 6 -> {
-					System.out.println("Finalizando");
-					sc.close();
-					system = false;
-					System.exit(0);
-				}
-				default -> System.out.println("Opcão invalida. Por favor escolha uma opção valida.");
-			}
+   @Override
+   public void run(String... args) throws Exception {
+      Scanner sc = new Scanner(System.in);
+      while (system) {
+         menu();
+         Integer function = sc.nextInt();
+         sc.nextLine();
+         switch (function) {
+            case 1 -> cargoService.start();
+            case 2 -> funcionarioService.start();
+            case 3 -> unidadeTrabalhoService.start();
+            case 4 -> relatoriosService.start();
+            case 5 -> cargoService.start();
+            case 6 -> {
+               sc.close();
+               System.out.println("Finalizando");
+               System.exit(0);
+            }
+            default -> System.out.println("Opcão invalida. Por favor escolha uma opção valida.");
+         }
+      }
+   }
 
-		}
-
-	}
-
-	private Integer menu(Scanner sc){
-		System.out.println("Qual função deseja executar?");
-		System.out.println("1 - Cargo");
-		System.out.println("2 - Funcionario");
-		System.out.println("3 - Unidade");
-		System.out.println("4 - Relatorios");
-		System.out.println("5 - Relatorio dinamico");
-		System.out.println("6 - Sair");
-    return sc.nextInt();
-	}
+   private void menu() {
+      System.out.println("Qual função deseja executar?");
+      System.out.println("1 - Cargo");
+      System.out.println("2 - Funcionario");
+      System.out.println("3 - Unidade");
+      System.out.println("4 - Relatorios");
+      System.out.println("5 - Relatorio dinamico");
+      System.out.println("6 - Sair");
+   }
 }
