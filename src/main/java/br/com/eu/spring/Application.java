@@ -39,19 +39,19 @@ public class Application implements CommandLineRunner {
          Integer function = sc.nextInt();
          sc.nextLine();
          switch (function) {
-            case 1 -> cargoService.start();
-            case 2 -> funcionarioService.start();
-            case 3 -> unidadeTrabalhoService.start();
-            case 4 -> relatoriosService.start();
-            case 5 -> relatorioFuncionarioDinamico.start();
+            case 1 -> cargoService.start(sc);
+            case 2 -> funcionarioService.start(sc);
+            case 3 -> unidadeTrabalhoService.start(sc);
+            case 4 -> relatoriosService.start(sc);
+            case 5 -> relatorioFuncionarioDinamico.start(sc);
             case 6 -> {
-               sc.close();
                System.out.println("Finalizando");
                System.exit(0);
             }
             default -> System.out.println("Opcão invalida. Por favor escolha uma opção valida.");
          }
       }
+      sc.close();
    }
 
    private void menu() {

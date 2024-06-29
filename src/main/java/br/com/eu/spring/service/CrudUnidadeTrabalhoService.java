@@ -16,8 +16,8 @@ public class CrudUnidadeTrabalhoService {
       this.repository = repository;
    }
 
-   public void start() {
-      Scanner sc = new Scanner(System.in);
+   public void start(Scanner sc) {
+      system = true;
       while (system) {
          System.out.println("Qual acao de unidade de trabalho deseja executar");
          System.out.println("1 - Salvar");
@@ -34,8 +34,7 @@ public class CrudUnidadeTrabalhoService {
             case 3 -> visualizar();
             case 4 -> deletar(sc);
             case 5 -> {
-               sc.close();
-               System.exit(0);
+               system = false;
             }
             default -> System.out.println("Opcão invalida. Por favor escolha uma opção valida.");
          }

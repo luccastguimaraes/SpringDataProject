@@ -18,8 +18,8 @@ public class RelatoriosService {
       this.funcionarioRepository = funcionarioRepository;
    }
 
-   public void start() {
-      Scanner sc = new Scanner(System.in);
+   public void start(Scanner sc) {
+      system = true;
       while (system) {
          System.out.println("Qual relatorio deseja executar");
          System.out.println("0 - Sair");
@@ -33,8 +33,7 @@ public class RelatoriosService {
             case 1 -> buscaFuncionarioCpf(sc);
             case 2 -> relatorioSalarioFuncionario();
             default -> {
-               sc.close();
-               System.exit(0);
+               system = false;
             }
          }
       }
